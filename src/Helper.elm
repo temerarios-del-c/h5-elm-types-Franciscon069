@@ -51,6 +51,7 @@ view model =
         ]
 
 
+main : Program () Model Msg
 main =
     Browser.sandbox
         { init = init
