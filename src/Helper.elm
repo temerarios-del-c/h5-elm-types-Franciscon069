@@ -6,6 +6,10 @@ import Html.Attributes exposing (src)
 import Html.Events exposing (onClick)
 
 
+
+-- CARRUSEL (tu código original)
+
+
 type alias Model =
     { indice : Int }
 
@@ -58,3 +62,61 @@ main =
         , update = update
         , view = view
         }
+
+
+
+-- CALIFICACIONES (requerido por TestSuite)
+
+
+type Grade
+    = Approved
+    | Failed
+    | Pending
+
+
+categoricalGrade : List Float -> List Grade
+categoricalGrade list =
+    List.map
+        (\grade ->
+            if grade >= 7 then
+                Approved
+
+            else if grade >= 0 then
+                Failed
+
+            else
+                Pending
+        )
+        list
+
+
+
+-- VUELOS (requerido por TestSuite)
+
+
+type AirplaneStatus
+    = Cancelled
+    | Delayed
+    | OnTime
+    | Boarding
+
+
+airplaneScheduleAction : AirplaneStatus -> String
+airplaneScheduleAction status =
+    case status of
+        Cancelled ->
+            "Pedir reembolso"
+
+        Delayed ->
+            "Esperar"
+
+        OnTime ->
+            "Esperar"
+
+        Boarding ->
+            "Buscar boleto"
+
+
+airportAction : List AirplaneStatus -> List String
+airportAction list =
+    List.map airplaneScheduleAction list
